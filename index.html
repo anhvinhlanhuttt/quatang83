@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Tặng Bạn</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4); /* Màu nền chuyển sắc */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Ảnh động trung tâm */
+        .main-gif {
+            width: 80%;
+            max-width: 300px;
+            z-index: 100;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Định nghĩa lời chúc trôi nổi */
+        .wish {
+            position: absolute;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            pointer-events: none;
+            font-weight: bold;
+            white-space: nowrap;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(20deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueW94bm93YXpxeHpxeHpxeHpxeHpxeHpxeHpxeHpxeHpxeHpxJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/m4j8Yv6Z952Zk/giphy.gif" class="main-gif">
+
+    <script>
+        const wishes = [
+            "🌸 Vạn sự như ý", "✨ Luôn vui vẻ nhé", "🎂 Tuổi mới rạng rỡ", 
+            "💖 Mãi hạnh phúc", "🍀 May mắn luôn mỉm cười", "⭐ Tỏa sáng nhé bạn tôi"
+        ];
+
+        function createWish() {
+            const wish = document.createElement('div');
+            wish.className = 'wish';
+            wish.innerText = wishes[Math.floor(Math.random() * wishes.length)];
+            
+            // Tùy chỉnh vị trí và tốc độ ngẫu nhiên
+            wish.style.left = Math.random() * 90 + "vw";
+            wish.style.fontSize = (Math.random() * 20 + 15) + "px";
+            wish.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            
+            document.body.appendChild(wish);
+
+            // Tự xóa sau khi bay xong
+            setTimeout(() => { wish.remove(); }, 10000);
+        }
+
+        // Cứ mỗi 0.8 giây tạo 1 lời chúc mới
+        setInterval(createWish, 800);
+    </script>
+</body>
+</html>
